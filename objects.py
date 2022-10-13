@@ -1,25 +1,37 @@
+from turtle import pos, position
 import pygame 
 
 
 class Sprite(pygame.sprite.Sprite):
-    def __init__(self, pos):
+    def __init__(self, position):
         super(Sprite, self).__init__()
         self.image = pygame.image.load("nave.png")
-        #self.image.fill((40, 60, 140))
         self.rect = self.image.get_rect()
-        self.rect.center = pos
-        self._vy = 3  # The x-velocity.
-        self._spritex = pos[0]
-        self._spritey = pos[1]
+        self.rect.center = position
+        self._vy = 5  # The x-velocity.
+       # self._spritex = pos[0]
+        self._spritey = position[1]
 
     def go_up(self):
         # Update the _spritex position first and then the rect.
         self._spritey -= self._vy
         self.rect.centery = self._spritey
 
+        if self.rect.centery < 0:
+           self._spritey = self._vy
+
+
     def go_down(self):
         self._spritey += self._vy
         self.rect.centery = self._spritey
+
+        if self.rect.centery > 600:
+           self._spritey -= self._vy
+        
+
+    
+ 
+
 
 
 
