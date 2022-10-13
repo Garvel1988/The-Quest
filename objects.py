@@ -1,6 +1,40 @@
-import pygame as pg
+import pygame 
 
 
+class Sprite(pygame.sprite.Sprite):
+    def __init__(self, pos):
+        super(Sprite, self).__init__()
+        self.image = pygame.image.load("nave.png")
+        #self.image.fill((40, 60, 140))
+        self.rect = self.image.get_rect()
+        self.rect.center = pos
+        self._vy = 3  # The x-velocity.
+        self._spritex = pos[0]
+        self._spritey = pos[1]
+
+    def go_up(self):
+        # Update the _spritex position first and then the rect.
+        self._spritey -= self._vy
+        self.rect.centery = self._spritey
+
+    def go_down(self):
+        self._spritey += self._vy
+        self.rect.centery = self._spritey
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+"""""
 class aircraft:
    def __init__(self,center_x, center_y, w =30, h=35,color=(255,255,0)):
      self.center_x =center_x
@@ -23,7 +57,7 @@ class aircraft:
    def loader(self, pantalla):
         pg.draw.rect(pantalla,self.color,(self.center_x -self.w//2 ,self.center_y -self.h //2 ,self.w, self.h))
 
-""""
+
 static_aircraft = [pg.image.load("aircraft\image.PNG")]
 
 Turn_up = [pg.image.load("aircraft\image1.PNG"),
