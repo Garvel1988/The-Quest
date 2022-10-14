@@ -1,11 +1,10 @@
-from turtle import pos, position
-import pygame 
+import pygame, random
 
 
-class Sprite(pygame.sprite.Sprite):
+class Aircraft(pygame.sprite.Sprite):
     def __init__(self, position):
-        super(Sprite, self).__init__()
-        self.image = pygame.image.load("nave.png")
+        super(Aircraft, self).__init__()
+        self.image = pygame.image.load("images/aircraft/nave.png")
         self.rect = self.image.get_rect()
         self.rect.center = position
         self._vy = 5  # The x-velocity.
@@ -17,17 +16,42 @@ class Sprite(pygame.sprite.Sprite):
         self._spritey -= self._vy
         self.rect.centery = self._spritey
 
-        if self.rect.centery < 0:
-           self._spritey = self._vy
+        if self.rect.centery < 40:
+           self._spritey += self._vy
 
 
     def go_down(self):
         self._spritey += self._vy
         self.rect.centery = self._spritey
 
-        if self.rect.centery > 600:
+        if self.rect.centery > 550:
            self._spritey -= self._vy
+
+
+
+class Asteroid(pygame.sprite.Sprite):
+    def __init__(self,position):
+        super(Asteroid, self).__init__()
+        self.image = pygame.image.load("images/asteroids/asteroid2.png")
+        self.rect = self.image.get_rect()
+        self.rect.center = position
+        self._vx = random.randint(2,15) #velocidad
+        self._spritex = position[0]
         
+    def asteroid_movement(self):
+        self._spritex -= self._vx
+        self.rect.centerx = self._spritex
+    def asteroid_random(self):
+        
+        
+                
+#dentro del while
+
+
+        
+
+
+
 
     
  
@@ -39,14 +63,8 @@ class Sprite(pygame.sprite.Sprite):
 
 
 
-
-
-
-
-
-
-
 """""
+
 class aircraft:
    def __init__(self,center_x, center_y, w =30, h=35,color=(255,255,0)):
      self.center_x =center_x
