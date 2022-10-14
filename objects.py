@@ -34,15 +34,18 @@ class Asteroid(pygame.sprite.Sprite):
         super(Asteroid, self).__init__()
         self.image = pygame.image.load("images/asteroids/asteroid2.png")
         self.rect = self.image.get_rect()
+        #self._spritex = random.randint(2,15)
         self.rect.center = position
         self._vx = random.randint(2,15) #velocidad
         self._spritex = position[0]
         
     def asteroid_movement(self):
+        self._vx = 5
         self._spritex -= self._vx
         self.rect.centerx = self._spritex
-    def asteroid_random(self):
-        
+
+    #def asteroid_random(self):
+
         
                 
 #dentro del while

@@ -13,12 +13,13 @@ pg.display.set_icon(icon)
 #BLACK = pg.Color('black')
 
 music = pg.mixer.Sound("Sounds\Rush.wav")
-music.set_volume(0.0)
+music.set_volume(0.1)
 time_clock = pg.time.Clock()
 
 game_over = False
 
-
+cantidad = 6
+contador = 0
 nave = Aircraft([100, 300])
 
 
@@ -28,12 +29,24 @@ active_sprite_list = pg.sprite.Group()
 active_sprite_list.add(nave,asteroid)
 
 
+asteroid_list = pg.sprite.Group()
+
+
+
+for i in range(cantidad):
+    asteroid=Asteroid([1000,random.randint(100,600)])
+    asteroid_list.add(asteroid)
+    
+
+
+
 
 
 music.play()
 while not game_over:
     dt = time_clock.tick(50)
     screen.blit(background_image,(background_x,background_y,))
+    #active_sprite_list.
     asteroid.asteroid_movement()
     for event in pg.event.get():
         if event.type == pg.QUIT:
@@ -46,7 +59,11 @@ while not game_over:
         nave.go_down()  
     active_sprite_list.update()
     active_sprite_list.draw(screen)
+    asteroid_list.draw(screen)
     
+    asteroid_list.update()
+
+      
     
 
     pg.display.flip()
