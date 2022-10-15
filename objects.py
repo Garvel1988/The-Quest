@@ -27,69 +27,64 @@ class Aircraft(pygame.sprite.Sprite):
         if self.rect.centery > 550:
            self._spritey -= self._vy
 
+        
 
 
 class Asteroid(pygame.sprite.Sprite):
-    def __init__(self,position):
+    def __init__(self):
         super(Asteroid, self).__init__()
         self.image = pygame.image.load("images/asteroids/asteroid2.png")
         self.rect = self.image.get_rect()
         #self._spritex = random.randint(2,15)
-        self.rect.center = position
-        self._vx = random.randint(2,15) #velocidad
-        self._spritex = position[0]
+        self.rect.center = 1000,random.randint(100,600)
+        self.speed = random.randint(15,20) #velocidad
+
         
     def asteroid_movement(self):
-        self._vx = 5
-        self._spritex -= self._vx
-        self.rect.centerx = self._spritex
+        self.rect.x -= self.speed
+        #self.rect.centerx = self._spritex
 
-    #def asteroid_random(self):
-
+        if self.rect.left < -30:
+            self._spritex=1100
+            self._spritex -= self.speed
+            self.rect.centerx = self._spritex
+            self.rect.center = 1000,random.randint(100,600)
+            
+class Asteroid2(pygame.sprite.Sprite):
+    def __init__(self):
+        super().__init__()
+        self.image = pygame.image.load("images/asteroids/asteroid1.png")
+        self.rect = self.image.get_rect()
+        self.rect.center = 1000,random.randint(100,600)
+        self.speed = random.randint(8,15)
         
-                
-#dentro del while
+    def update2(self):
+        self.rect.x -= self.speed
 
+        if self.rect.left < -100:
+            self._spritex=1100
+            self._spritex -= self.speed
+            self.rect.centerx = self._spritex
+            self.rect.center = 1000,random.randint(100,600)
 
+class Asteroid3(pygame.sprite.Sprite):
+    def __init__(self):
+        super().__init__()
+        self.image = pygame.image.load("images/asteroids/asteroid3.png")
+        self.rect = self.image.get_rect()
+        self.rect.center = 1000,random.randint(100,600)
+        self.speed = random.randint(8,15)
         
+    def update2(self):
+        self.rect.x -= self.speed
 
+        if self.rect.left < -100:
+            self._spritex=1100
+            self._spritex -= self.speed
+            self.rect.centerx = self._spritex
+            self.rect.center = 1000,random.randint(100,600)    
 
-
-
-    
- 
-
-
-
-
-
-
-
-
-"""""
-
-class aircraft:
-   def __init__(self,center_x, center_y, w =30, h=35,color=(255,255,0)):
-     self.center_x =center_x
-     self.center_y = center_y
-     self.color = color
-     self.w = w
-     self.h = h
-     self.vx = 0
-     self.vy = 0
-
-   def movement(self, tecla_arriba, tecla_abajo, y_max=600):
-        estado_teclas = pg.key.get_pressed()
-        if estado_teclas[tecla_arriba] and self.center_y > 0 + self.h//2:
-            self.center_y -= self.vy
-        if estado_teclas[tecla_abajo]:
-            self.center_y += self.vy
-        if self.center_y > y_max - self.h//2:
-           self.center_y = y_max - self.h //2
-    
-   def loader(self, pantalla):
-        pg.draw.rect(pantalla,self.color,(self.center_x -self.w//2 ,self.center_y -self.h //2 ,self.w, self.h))
-
+""""
 
 static_aircraft = [pg.image.load("aircraft\image.PNG")]
 
