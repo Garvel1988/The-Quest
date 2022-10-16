@@ -1,3 +1,4 @@
+from string import punctuation
 import pygame, random
 
 class Aircraft(pygame.sprite.Sprite):
@@ -33,7 +34,7 @@ class Asteroid(pygame.sprite.Sprite):
         self.image = pygame.image.load("images/asteroids/asteroid2.png")
         self.rect = self.image.get_rect()
         #self._spritex = random.randint(2,15)
-        self.rect.center = 1000,random.randint(100,600)
+        self.rect.center = 1500,random.randint(100,600)
         self.speed = random.randint(15,20) #velocidad
 
         
@@ -46,6 +47,7 @@ class Asteroid(pygame.sprite.Sprite):
             self._spritex -= self.speed
             self.rect.centerx = self._spritex
             self.rect.center = 1000,random.randint(100,600)
+            punctuation + "10"
             
 class Asteroid2(pygame.sprite.Sprite):
     def __init__(self):
@@ -55,8 +57,9 @@ class Asteroid2(pygame.sprite.Sprite):
         self.rect.center = 1000,random.randint(100,600)
         self.speed = random.randint(8,15)
         
-    def update2(self):
+    def asteroid2_movement(self):
         self.rect.x -= self.speed
+        
 
         if self.rect.left < -100:
             self._spritex=1100
@@ -70,9 +73,9 @@ class Asteroid3(pygame.sprite.Sprite):
         self.image = pygame.image.load("images/asteroids/asteroid3.png")
         self.rect = self.image.get_rect()
         self.rect.center = 1000,random.randint(100,600)
-        self.speed = random.randint(8,15)
+        self.speed = random.randint(5,8)
         
-    def update2(self):
+    def asteroid3_movement(self):
         self.rect.x -= self.speed
 
         if self.rect.left < -100:
