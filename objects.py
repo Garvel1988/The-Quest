@@ -1,12 +1,11 @@
 import pygame, random
 
-
 class Aircraft(pygame.sprite.Sprite):
     def __init__(self, position):
         super(Aircraft, self).__init__()
         self.image = pygame.image.load("images/aircraft/nave.png")
         self.rect = self.image.get_rect()
-        self.rect.center = position
+        self.rect.center = position 
         self._vy = 5  # The x-velocity.
        # self._spritex = pos[0]
         self._spritey = position[1]
@@ -26,8 +25,6 @@ class Aircraft(pygame.sprite.Sprite):
 
         if self.rect.centery > 550:
            self._spritey -= self._vy
-
-        
 
 
 class Asteroid(pygame.sprite.Sprite):

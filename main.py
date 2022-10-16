@@ -1,5 +1,7 @@
+from time import sleep
 import pygame as pg
 from objects import Aircraft, Asteroid, Asteroid2, Asteroid3
+
 
 
 pg.mixer.init()
@@ -16,12 +18,15 @@ pg.display.set_icon(icon)
 
 music = pg.mixer.Sound("Sounds\Rush.wav")
 music.set_volume(0.1)
+explosion = pg.mixer.Sound("Sounds\explosion.wav")
+explosion.set_volume(0.1)
 time_clock = pg.time.Clock()
 game_over = False
 
 
 
 swordfish = Aircraft([100, 300])
+
 sprite_swordfish = pg.sprite.Group()
 sprite_swordfish.add(swordfish)
 
@@ -48,6 +53,7 @@ while not game_over:
     dt = time_clock.tick(50)
     screen.blit(background_image,(background_x,background_y))
     #active_sprite_list.
+    
     asteroid.asteroid_movement()
     asteroid2.update2()
     asteroid3.update2()
@@ -68,11 +74,18 @@ while not game_over:
 
     asteroids_sprites.update()
     asteroids_sprites.draw(screen)
-
+    
+    colision = pg.sprite.groupcollide(sprite_swordfish,asteroids_sprites,False,False)
+    if colision:
+        swordfish.image = pg.image.load("images/aircraft/explosion.png")
+        explosion.play()
+        
+    
     pg.display.flip()
  
-""""
+
+"""
 colision = pg.sprite.groupcollide(asteroids_sprites,asteroids_sprites,sprite_swordfish, False)
     if colision:
        swordfish.image = pg.image.load("images/aircraft/nave.png")
-"""
+"""       
