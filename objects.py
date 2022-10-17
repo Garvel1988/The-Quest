@@ -1,32 +1,26 @@
-from string import punctuation
 import pygame, random
 
 class Aircraft(pygame.sprite.Sprite):
-    def __init__(self, position):
+    def __init__(self):
         super(Aircraft, self).__init__()
         self.image = pygame.image.load("images/aircraft/nave.png")
         self.rect = self.image.get_rect()
-        self.rect.center = position 
-        self._vy = 5  # The x-velocity.
-       # self._spritex = pos[0]
-        self._spritey = position[1]
+        self.rect.center = 100,300
+        self.vy = 5  
+        
 
     def go_up(self):
-        # Update the _spritex position first and then the rect.
-        self._spritey -= self._vy
-        self.rect.centery = self._spritey
+        self.rect.y -= self.vy
 
         if self.rect.centery < 40:
-           self._spritey += self._vy
-
+           self.rect.y += self.vy
+ 
 
     def go_down(self):
-        self._spritey += self._vy
-        self.rect.centery = self._spritey
+        self.rect.y += self.vy
 
-        if self.rect.centery > 550:
-           self._spritey -= self._vy
-
+        if self.rect.y > 530:
+           self.rect.y -= self.vy
 
 class Asteroid(pygame.sprite.Sprite):
     def __init__(self):
@@ -34,7 +28,7 @@ class Asteroid(pygame.sprite.Sprite):
         self.image = pygame.image.load("images/asteroids/asteroid2.png")
         self.rect = self.image.get_rect()
         #self._spritex = random.randint(2,15)
-        self.rect.center = 1500,random.randint(100,600)
+        self.rect.center = 4000,random.randint(100,600)
         self.speed = random.randint(15,20) #velocidad
 
         
@@ -47,17 +41,18 @@ class Asteroid(pygame.sprite.Sprite):
             self._spritex -= self.speed
             self.rect.centerx = self._spritex
             self.rect.center = 1000,random.randint(100,600)
-            punctuation + "10"
+
             
+        
 class Asteroid2(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
         self.image = pygame.image.load("images/asteroids/asteroid1.png")
         self.rect = self.image.get_rect()
-        self.rect.center = 1000,random.randint(100,600)
+        self.rect.center = 4000,random.randint(100,600)
         self.speed = random.randint(8,15)
         
-    def asteroid2_movement(self):
+    def asteroid2_movement(self,):
         self.rect.x -= self.speed
         
 
@@ -66,26 +61,28 @@ class Asteroid2(pygame.sprite.Sprite):
             self._spritex -= self.speed
             self.rect.centerx = self._spritex
             self.rect.center = 1000,random.randint(100,600)
+            
+            
 
 class Asteroid3(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
         self.image = pygame.image.load("images/asteroids/asteroid3.png")
         self.rect = self.image.get_rect()
-        self.rect.center = 1000,random.randint(100,600)
-        self.speed = random.randint(5,8)
+        self.rect.center = 2000,random.randint(100,600)
+        self.speed = random.randint(2,4)
         
     def asteroid3_movement(self):
         self.rect.x -= self.speed
 
-        if self.rect.left < -100:
-            self._spritex=1100
+        if self.rect.left < -300:
+            self._spritex=3100
             self._spritex -= self.speed
             self.rect.centerx = self._spritex
-            self.rect.center = 1000,random.randint(100,600)    
+            self.rect.center = 1000,random.randint(100,600) 
+        
 
 """"
-
 static_aircraft = [pg.image.load("aircraft\image.PNG")]
 
 Turn_up = [pg.image.load("aircraft\image1.PNG"),
