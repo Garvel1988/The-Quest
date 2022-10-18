@@ -1,4 +1,7 @@
-import pygame, random
+from string import punctuation
+import pygame, random, time
+
+
 
 class Aircraft(pygame.sprite.Sprite):
     def __init__(self):
@@ -6,8 +9,8 @@ class Aircraft(pygame.sprite.Sprite):
         self.image = pygame.image.load("images/aircraft/nave.png")
         self.rect = self.image.get_rect()
         self.rect.center = 100,300
-        self.vy = 5  
-        
+        self.vy = 8
+             
 
     def go_up(self):
         self.rect.y -= self.vy
@@ -30,19 +33,21 @@ class Asteroid(pygame.sprite.Sprite):
         #self._spritex = random.randint(2,15)
         self.rect.center = 4000,random.randint(100,600)
         self.speed = random.randint(15,20) #velocidad
+        self.asteroid_score = 0
 
         
     def asteroid_movement(self):
         self.rect.x -= self.speed
         #self.rect.centerx = self._spritex
-
+   
         if self.rect.left < -30:
             self._spritex=1100
             self._spritex -= self.speed
             self.rect.centerx = self._spritex
             self.rect.center = 1000,random.randint(100,600)
-
+            self.asteroid_score += 10
             
+                       
         
 class Asteroid2(pygame.sprite.Sprite):
     def __init__(self):
@@ -51,7 +56,9 @@ class Asteroid2(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.center = 4000,random.randint(100,600)
         self.speed = random.randint(8,15)
+        self.asteroid_score = 0
         
+    
     def asteroid2_movement(self,):
         self.rect.x -= self.speed
         
@@ -61,6 +68,9 @@ class Asteroid2(pygame.sprite.Sprite):
             self._spritex -= self.speed
             self.rect.centerx = self._spritex
             self.rect.center = 1000,random.randint(100,600)
+            self.asteroid_score += 20
+            
+            
             
             
 
@@ -71,6 +81,7 @@ class Asteroid3(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.center = 2000,random.randint(100,600)
         self.speed = random.randint(2,4)
+        self.asteroid_score = 0
         
     def asteroid3_movement(self):
         self.rect.x -= self.speed
@@ -79,9 +90,9 @@ class Asteroid3(pygame.sprite.Sprite):
             self._spritex=3100
             self._spritex -= self.speed
             self.rect.centerx = self._spritex
-            self.rect.center = 1000,random.randint(100,600) 
+            self.rect.center = 1000,random.randint(100,600)
+            self.asteroid_score += 40
         
-
 """"
 static_aircraft = [pg.image.load("aircraft\image.PNG")]
 
