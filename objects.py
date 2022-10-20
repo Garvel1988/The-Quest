@@ -1,7 +1,8 @@
 from string import punctuation
 import pygame, random, time
 
-
+background_x = 0
+final_mision1 = -1150.8999999999116
 
 class Aircraft(pygame.sprite.Sprite):
     def __init__(self):
@@ -10,7 +11,7 @@ class Aircraft(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.center = 100,300
         self.vy = 4
-             
+           
 
     def go_up(self):
         self.rect.y -= self.vy
@@ -26,6 +27,17 @@ class Aircraft(pygame.sprite.Sprite):
 
         if self.rect.y > 530:
            self.rect.y -= self.vy
+
+    def aterrizaje(self):
+           self.rect.x += self.vy
+           
+              
+              
+           
+            
+        
+
+
 
 class Asteroid(pygame.sprite.Sprite):
     def __init__(self):
