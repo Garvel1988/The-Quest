@@ -46,11 +46,24 @@ class Asteroid(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         #self._spritex = random.randint(2,15)
         self.rect.center = 4000,random.randint(100,600)
-        self.speed = random.randint(15,20) #velocidad
+        self.speed = random.randint(10,15) #velocidad
         self.asteroid_score = 0
 
         
     def asteroid_movement(self):
+        self.rect.x -= self.speed
+        #self.rect.centerx = self._spritex
+   
+        if self.rect.left < -30:
+            self._spritex=1100
+            self._spritex -= self.speed
+            self.rect.centerx = self._spritex
+            self.rect.center = 1000,random.randint(100,600)
+            self.asteroid_score += 10
+
+    def asteroid_movement2(self):
+        self.rect.center = 4000,random.randint(100,600)
+        self.speed = random.randint(15,18)
         self.rect.x -= self.speed
         #self.rect.centerx = self._spritex
    
@@ -83,7 +96,19 @@ class Asteroid2(pygame.sprite.Sprite):
             self.rect.centerx = self._spritex
             self.rect.center = 1000,random.randint(100,600)
             self.asteroid_score += 20
-            
+   
+    def asteroid2_movement2(self,):
+        self.rect.center = 4000,random.randint(100,600)
+        self.speed = random.randint(10,16)
+        self.rect.x -= self.speed
+        
+
+        if self.rect.left < -100:
+            self._spritex=1100
+            self._spritex -= self.speed
+            self.rect.centerx = self._spritex
+            self.rect.center = 1000,random.randint(100,600)
+            self.asteroid_score += 20        
             
             
             
@@ -107,7 +132,17 @@ class Asteroid3(pygame.sprite.Sprite):
             self.rect.center = 1000,random.randint(100,600)
             self.asteroid_score += 40
         
+    def asteroid3_movement2(self):
+        self.rect.center = 3000,random.randint(100,600)
+        self.speed = random.randint(4,8)
+        self.rect.x -= self.speed
 
+        if self.rect.left < -300 and final_mision1:
+            self._spritex=3100
+            self._spritex -= self.speed
+            self.rect.centerx = self._spritex
+            self.rect.center = 1000,random.randint(100,600)
+            self.asteroid_score += 40
 
 
 class life(pygame.sprite.Sprite):
@@ -130,6 +165,7 @@ class life(pygame.sprite.Sprite):
             self.rect.centerx = self._spritex
             self.rect.center = 8000,random.randint(100,600)
             self.asteroid_score += 60
+
  
 
 
