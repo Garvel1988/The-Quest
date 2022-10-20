@@ -1,4 +1,3 @@
-from time import sleep
 import pygame as pg, random,time
 from objects import Aircraft, Asteroid, Asteroid2, Asteroid3,life
 
@@ -13,11 +12,11 @@ pg.display.set_caption("The Quest")
 
 #images
 background_image  = pg.image.load("images\planets\small.png").convert() #1.20 finalizar pantalla
-stage2 = pg.image.load("images\planets\smallgreen.png").convert()
+stage2 = pg.image.load("images\planets\smallpurple.png").convert()
 background_x = 0
 background_y =0
 final_mision1 = -1150.8999999999116
-final_mision2 = -1150.8999999999116
+final_mision2 = -1155.8999999999116
 icon = pg.image.load("images\icon.PNG")
 life_6 =  pg.image.load("images/aircraft/6_vidas.png").convert()
 life_5 =  pg.image.load("images/aircraft/5_vidas.png").convert()
@@ -80,7 +79,8 @@ imbencible = 150
 turbo = 0
 lifes = 3
 final_mision1crono = 0
-
+final_mision2crono = 0
+aterrizaje = 0
 
 #######################################################################################################
 
@@ -143,6 +143,23 @@ while not game_over:
     if lifes == 0:
         #game_over = True
         pass
+  
+    if background_x <= -1150.8999999999942:
+       background_x =  -1150.8999999999942
+       screen.blit(mensaje_aterriza,(450,300))
+       final_mision1crono += 1  
+       swordfish.aterrizaje()   
+       aterrizaje += 1  
+       if final_mision1crono >= 220 :
+              background_image  = pg.image.load("images\planets\smallpurple.png").convert()
+              background_x = 0
+              swordfish.rect.center = 100,300             
+              asteroid.asteroid_movement2()
+              asteroid2.asteroid2_movement2()
+              asteroid3.asteroid3_movement2()
+              final_mision1crono = 0
+    if aterrizaje == 440:
+         game_over = True
 
     for event in pg.event.get():
         if event.type == pg.QUIT:
@@ -175,30 +192,18 @@ while not game_over:
     sprite_swordfish.draw(screen)
     asteroids_sprites.update()
     asteroids_sprites.draw(screen)
+        
+    #print(lifes)
+    print(aterrizaje)
+    
+    pg.time.get_ticks()
+    pg.display.flip()
+     
+"""""
 
-  
-    if background_x <= final_mision1:
-       background_x =  final_mision1
-       screen.blit(mensaje_aterriza,(450,300))
-       final_mision1crono += 1  
-       swordfish.aterrizaje()        
-       if final_mision1crono >= 220:
-              background_image = pg.image.load("images\planets\smallgreen.png").convert() 
-              background_x = 0
-              swordfish.rect.center = 100,300             
-              asteroid.asteroid_movement2()
-              asteroid2.asteroid2_movement2()
-              asteroid3.asteroid3_movement2()
-              final_mision1crono = 0
-              if background_x <= final_mision2:
+ if background_x <= final_mision2:
                  background_x =  final_mision2
                  screen.blit(mensaje_aterriza,(450,300))
                  final_mision1crono += 1
                  swordfish.aterrizaje()
-    #print(lifes)
-    print(final_mision1crono)
-    pg.time.get_ticks()
-    pg.display.flip()
-     
-
-
+                 """

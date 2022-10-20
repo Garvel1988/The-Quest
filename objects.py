@@ -30,6 +30,9 @@ class Aircraft(pygame.sprite.Sprite):
 
     def aterrizaje(self):
            self.rect.x += self.vy
+    
+    def aterrizaje2(self):
+           self.rect.x += self.vy
            
               
               
