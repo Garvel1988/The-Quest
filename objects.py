@@ -29,18 +29,16 @@ class Aircraft(pygame.sprite.Sprite):
            self.rect.y -= self.vy
 
     def aterrizaje(self):
-           self.rect.x += self.vy
+           self.rect.x += self.vy        
+           if self.rect.x >= 675:
+              self.image = pygame.transform.scale(self.image, (50, 40))
+              if self.rect.x >= 700:
+                self.rect.y -= self.vy
+                self.image = pygame.transform.rotate(self.image, 75)
+                self.image = pygame.transform.scale(self.image, (20, 30))
+                
     
-    def aterrizaje2(self):
-           self.rect.x += self.vy
-           
               
-              
-           
-            
-        
-
-
 
 class Asteroid(pygame.sprite.Sprite):
     def __init__(self):
