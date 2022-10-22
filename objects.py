@@ -1,8 +1,8 @@
-from string import punctuation
-import pygame, random, time
 
+import pygame, random
 background_x = 0
 final_mision1 = -1150.8999999999116
+
 
 class Aircraft(pygame.sprite.Sprite):
     def __init__(self):
@@ -11,15 +11,20 @@ class Aircraft(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.center = 100,300
         self.vy = 4
-           
+        self.lifes = 3
+        self.life_restart = 150
+        self.landing = 0
+        self.life_3 =  pygame.image.load("images/aircraft/3_vidas.png")
 
+
+
+           
     def go_up(self):
         self.rect.y -= self.vy
         self.image = pygame.image.load("images/aircraft/naveup.png")
 
         if self.rect.centery < 40:
            self.rect.y += self.vy
- 
 
     def go_down(self):
         self.rect.y += self.vy
@@ -55,7 +60,7 @@ class Asteroid(pygame.sprite.Sprite):
         self.rect.x -= self.speed
         #self.rect.centerx = self._spritex
    
-        if self.rect.left < -30:
+        if self.rect.left < -30 and background_x > -1150.8999999999116:
             self._spritex=1100
             self._spritex -= self.speed
             self.rect.centerx = self._spritex
@@ -91,7 +96,7 @@ class Asteroid2(pygame.sprite.Sprite):
         self.rect.x -= self.speed
         
 
-        if self.rect.left < -100:
+        if self.rect.left < -100 and background_x > -1150.8999999999116:
             self._spritex=1100
             self._spritex -= self.speed
             self.rect.centerx = self._spritex
@@ -104,7 +109,7 @@ class Asteroid2(pygame.sprite.Sprite):
         self.rect.x -= self.speed
         
 
-        if self.rect.left < -100:
+        if self.rect.left < -100 and background_x > -1150.8999999999116:
             self._spritex=1100
             self._spritex -= self.speed
             self.rect.centerx = self._spritex
@@ -126,7 +131,7 @@ class Asteroid3(pygame.sprite.Sprite):
     def asteroid3_movement(self):
         self.rect.x -= self.speed
 
-        if self.rect.left < -300:
+        if self.rect.left < -300 and background_x > -1150.8999999999116:
             self._spritex=3100
             self._spritex -= self.speed
             self.rect.centerx = self._spritex
@@ -138,7 +143,7 @@ class Asteroid3(pygame.sprite.Sprite):
         self.speed = random.randint(4,8)
         self.rect.x -= self.speed
 
-        if self.rect.left < -300 and final_mision1:
+        if self.rect.left < -300 and background_x > -1150.8999999999116:
             self._spritex=3100
             self._spritex -= self.speed
             self.rect.centerx = self._spritex
@@ -153,7 +158,7 @@ class life(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.center = 8000,random.randint(100,600)
         self.speed = random.randint(12,20)
-        self.asteroid_score = 0
+        self.life_score = 0
     
         
     
@@ -165,31 +170,56 @@ class life(pygame.sprite.Sprite):
             self._spritex -= self.speed
             self.rect.centerx = self._spritex
             self.rect.center = 8000,random.randint(100,600)
-            self.asteroid_score += 60
-
- 
 
 
-""""
-Turn_up = [pygame.image.load("aircraft\image1.PNG"),
-           pygame.image.load("aircraft\image2.PNG"),
-           pygame.image.load("aircraft\image3.PNG"),
-           pg.image.load("aircraft\image4.PNG"),
-           pg.image.load("aircraft\image5.PNG"),
-           pg.image.load("aircraft\image6.PNG"),
-] 
 
-turn_Down=[pg.image.load("aircraft\imageabajo1.PNG"),
-           pg.image.load("aircraft\imageabajo2.PNG"),
-           pg.image.load("aircraft\imageabajo3.PNG"),
-           pg.image.load("aircraft\imageabajo4.PNG"),
-           pg.image.load("aircraft\imageabajo5.PNG"),
-           pg.image.load("aircraft\imageabajo6.PNG"),
-]
-"""
-""""
-   def loader():
-    imagen = pg.image.load("starcraft.PNG")
-    pg.transform.scale(imagen, [30, 30])
-   
-  """   
+
+
+class Intro():
+   def __init__(self):
+     self.intro_screen = False
+     self.screen_intro = pygame.display.set_mode((1000,600))
+     self.background_image  = pygame.image.load("images\space.jpg").convert()
+     self.background_image_x =0
+     self.background_image_y = -400
+     self.image_nave = pygame.image.load("images/navetitulo.png").convert()
+     self.font = pygame.font.Font(None, 30)
+     self.continue_text = "press SPACE to continue"
+     self.tocontinue = self.font.render(self.continue_text, 1, (255, 255, 255))
+     self.music_opening = pygame.mixer.Sound("Sounds\opening.wav")
+     self.music_opening.set_volume(0.1)
+     self.key = pygame.key.get_pressed()
+     self.counter = 0
+     self.inst = 0
+    
+
+   def intro_screen1(self):
+    while not self.intro_screen:
+        pygame.init()
+        print(self.counter)
+        self.key = pygame.key.get_pressed()
+        self.music_opening.play()
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT or self.key[pygame.K_SPACE]:
+               self.intro_screen = True
+        self.background_image_y += 0.1
+        if self.background_image_y >= 5:
+           self.background_image_y = 5
+           self.background_image  = pygame.image.load("images\spacequest.jpg").convert() 
+           self.counter += 1 
+           if self.counter >= 320:     
+              self.background_image  = pygame.image.load("images\instrucciones.jpg").convert()
+              if self.counter >= 483: 
+                 self.background_image  = pygame.image.load("images\instrucciones2.jpg").convert()
+                 if self.counter >= 590:
+                    self.background_image  = pygame.image.load("images\instrucciones3.jpg").convert()
+                    if self.counter >=700:
+                       self.counter = 0               
+        self.screen_intro.blit(self.background_image,(self.background_image_x,self.background_image_y))
+        self.screen_intro.blit(self.tocontinue,(350,500))
+        #self.screen_intro.blit(self.image_nave,(self.background_image_x,self.background_image_y))
+        pygame.display.update()
+    pygame.quit()
+    
+
+

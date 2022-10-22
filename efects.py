@@ -1,0 +1,41 @@
+import pygame as pg 
+import random
+
+class Sounds():
+   def __init__(self):
+     pg.mixer.init()
+     self.expresions = [
+        pg.mixer.Sound("Sounds/think.wav"),     
+        pg.mixer.Sound("Sounds/alive.wav"),
+        pg.mixer.Sound("Sounds/humble.wav")]
+
+     self.ouch = [
+    pg.mixer.Sound("Sounds/kick.wav"),     
+    pg.mixer.Sound("Sounds/shame.wav"),
+    pg.mixer.Sound("Sounds/point.wav")]      
+
+     self.music_stage1 = pg.mixer.Sound("Sounds\Spiegel.wav")
+     self.music_stage2 = pg.mixer.Sound("Sounds\Rush.wav")
+     self.explosion = pg.mixer.Sound("Sounds\explosion.wav")
+
+
+   def play_explosion(self):
+        self.explosion.set_volume(0.1)
+        self.explosion.play()
+
+   def play_explesion(self):
+       self.expresions[random.randint(0,2)].play()
+
+   def play_ouch(self):
+       self.ouch[random.randint(0,2)].play()
+
+   def play_music1(self):
+     self.music_stage1.set_volume(0.1)
+     self.music_stage1.play()
+
+   def switchoffplay1(self): 
+    self.music_stage1.set_volume(0.0)
+
+   def play_music2(self):
+       self.music_stage2.set_volume(0.1)
+       self.music_stage2.play()
