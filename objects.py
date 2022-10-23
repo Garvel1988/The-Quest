@@ -1,7 +1,9 @@
 
 import pygame, random
-background_x = 0
+from screens import Game_screen
+
 final_mision1 = -1150.8999999999116
+
 
 
 class Aircraft(pygame.sprite.Sprite):
@@ -60,12 +62,20 @@ class Asteroid(pygame.sprite.Sprite):
         self.rect.x -= self.speed
         #self.rect.centerx = self._spritex
    
-        if self.rect.left < -30 and background_x > -1150.8999999999116:
+        if self.rect.left < -30 :
             self._spritex=1100
             self._spritex -= self.speed
             self.rect.centerx = self._spritex
             self.rect.center = 1000,random.randint(100,600)
             self.asteroid_score += 10
+
+    def asteroid_noscore(self):
+        self.rect.x -= self.speed
+        if self.rect.left < -30 :
+            self._spritex=1100
+            self._spritex -= self.speed
+            self.rect.centerx = self._spritex
+            self.rect.center = 1000,random.randint(100,600)
 
     def asteroid_movement2(self):
         self.rect.center = 4000,random.randint(100,600)
@@ -79,6 +89,7 @@ class Asteroid(pygame.sprite.Sprite):
             self.rect.centerx = self._spritex
             self.rect.center = 1000,random.randint(100,600)
             self.asteroid_score += 10
+  
             
                        
         
@@ -95,13 +106,20 @@ class Asteroid2(pygame.sprite.Sprite):
     def asteroid2_movement(self,):
         self.rect.x -= self.speed
         
-
-        if self.rect.left < -100 and background_x > -1150.8999999999116:
+        if self.rect.left < -100 :
             self._spritex=1100
             self._spritex -= self.speed
             self.rect.centerx = self._spritex
             self.rect.center = 1000,random.randint(100,600)
             self.asteroid_score += 20
+    
+    def asteroid2_noscore(self):
+        self.rect.x -= self.speed
+        if self.rect.left < -30 :
+            self._spritex=1100
+            self._spritex -= self.speed
+            self.rect.centerx = self._spritex
+            self.rect.center = 1000,random.randint(100,600)
    
     def asteroid2_movement2(self,):
         self.rect.center = 4000,random.randint(100,600)
@@ -109,7 +127,7 @@ class Asteroid2(pygame.sprite.Sprite):
         self.rect.x -= self.speed
         
 
-        if self.rect.left < -100 and background_x > -1150.8999999999116:
+        if self.rect.left < -100:
             self._spritex=1100
             self._spritex -= self.speed
             self.rect.centerx = self._spritex
@@ -131,24 +149,33 @@ class Asteroid3(pygame.sprite.Sprite):
     def asteroid3_movement(self):
         self.rect.x -= self.speed
 
-        if self.rect.left < -300 and background_x > -1150.8999999999116:
+        if self.rect.left < -300 :
             self._spritex=3100
             self._spritex -= self.speed
             self.rect.centerx = self._spritex
             self.rect.center = 1000,random.randint(100,600)
             self.asteroid_score += 40
+            
+    def asteroid3_noscore(self):
+        self.rect.x -= self.speed
+        if self.rect.left < -30 :
+            self._spritex=1100
+            self._spritex -= self.speed
+            self.rect.centerx = self._spritex
+            self.rect.center = 1000,random.randint(100,600)
         
     def asteroid3_movement2(self):
         self.rect.center = 3000,random.randint(100,600)
         self.speed = random.randint(4,8)
         self.rect.x -= self.speed
 
-        if self.rect.left < -300 and background_x > -1150.8999999999116:
+        if self.rect.left < -300 :
             self._spritex=3100
             self._spritex -= self.speed
             self.rect.centerx = self._spritex
             self.rect.center = 1000,random.randint(100,600)
             self.asteroid_score += 40
+
 
 
 class life(pygame.sprite.Sprite):
@@ -158,7 +185,7 @@ class life(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.center = 8000,random.randint(100,600)
         self.speed = random.randint(12,20)
-        self.life_score = 0
+        
     
         
     

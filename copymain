@@ -3,11 +3,11 @@ from efects import Sounds
 from objects import Aircraft, Asteroid, Asteroid2, Asteroid3,life
 from screens import Game_screen, Gameover, Intro
 
-
-
 pg.mixer.init()
 pg.init()
+
 game_over = False
+
 intro = Intro()
 intro.intro_screen1()
 
@@ -19,6 +19,7 @@ swordfish_life = life()
 asteroid=Asteroid() 
 asteroid2 = Asteroid2()
 asteroid3 = Asteroid3()
+gameover =Gameover()
 
 
 screen = pg.display.set_mode((1000,600))
@@ -52,7 +53,6 @@ game_screen =Game_screen()
 
 time_clock = pg.time.Clock()
 
-
 fuente = pg.font.Font(None, 60)#
 fuente_comunica = pg.font.Font(None, 30) #
 fuente_stage = pg.font.Font(None, 30)
@@ -63,11 +63,10 @@ text = "Game Over"
 mensaje = fuente.render(text, 1, (255, 255, 255))
 mensaje_stage1 = fuente_stage.render(text_stage1, 1,(255,255,255))
 
+##########sprites###############
 
 sprite_swordfish = pg.sprite.Group()
 sprite_swordfish.add(swordfish)
-
-
 
 asteroids_sprites= pg.sprite.Group()
 asteroids_sprites.add(asteroid,asteroid2,asteroid3)
@@ -79,6 +78,7 @@ life_restart = 150 ###
 puntuacion= 0
 
 score = 0 
+scorelife = 0
 imbencible = 150 
 turbo = 0
 lifes = 3   ###
@@ -86,7 +86,6 @@ final_mision1crono = 0
 final_mision2crono = 0
 landing = 0 ###
 lifeup = 0
-
 
 
       
@@ -97,7 +96,7 @@ while not game_over:
     colisiones = pg.sprite.groupcollide(sprite_swordfish,asteroids_sprites,False,False)         
     asteroid_score = asteroid.asteroid_score + asteroid2.asteroid_score +asteroid3.asteroid_score
     if background_x > -1150.8999999999116: 
-        puntuacion = fuente.render("Score: "+str(score+ asteroid_score + landing ), True,(255, 255, 0))
+        puntuacion = fuente.render("Score: "+str(score+ asteroid_score + landing+ scorelife ), True,(255, 255, 0))
         screen.blit(puntuacion,(10,10))
 
     if colisiones and imbencible >= 150 and background_x > -1150.8999999999116:
@@ -107,8 +106,8 @@ while not game_over:
         lifes -= 1 
         sound.play_ouch()
         imbencible = 0   
-    if  imbencible < 150:       
-            swordfish.image = pg.image.load("images/aircraft/nave imbencible.png") 
+        if  imbencible < 150:       
+            swordfish.image = pg.image.load("images/aircraft/nave_imbencible.png") 
             imbencible += 1
     else:      
       imbencible += 1
@@ -116,19 +115,25 @@ while not game_over:
       lifeup  +=1 
        
     vida_up = pg.sprite.groupcollide(sprite_swordfish,swordfish_life_sprites,False,True)
-
     if vida_up and imbencible >= 150 and background_x > -1150.8999999999116 and lifeup>= 150:
         lifes += 1
         lifeup = 0
+        scorelife += 60
         sound.play_explesion()
     if lifeup >= 600:
            swordfish_life_sprites.add(swordfish_life)
 
     dt = time_clock.tick(50)
     screen.blit(background_image,(background_x,background_y)) 
-    asteroid.asteroid_movement()
-    asteroid2.asteroid2_movement()
-    asteroid3.asteroid3_movement()
+    if background_x > -1150.8999999999116:
+       asteroid.asteroid_movement()
+       asteroid2.asteroid2_movement()
+       asteroid3.asteroid3_movement()
+    else:
+       asteroid.asteroid_noscore()
+       asteroid2.asteroid2_noscore()
+       asteroid3.asteroid3_noscore()        
+
     swordfish_life.life_movement()
     sprite_swordfish.update()
     screen.blit(puntuacion,(10,10))
@@ -146,8 +151,11 @@ while not game_over:
     if lifes == 1:
         screen.blit(life_1,(500, 30))
     if lifes == 0:
-           game_over = True
+            sound.switchoffplay1()
+            game_over = True
             
+        
+           
     ######################buble de aterizaje ##########################################
      
     if background_x <= -1150.8999999999942:
@@ -167,12 +175,13 @@ while not game_over:
               asteroid2.asteroid2_movement2()
               asteroid3.asteroid3_movement2()
               final_mision1crono = 0     
-    if landing == 440:
-         game_over = True
+    #if landing == 440:    
+        # game_over = True
                         ###################################################################33
     for event in pg.event.get():
         if event.type == pg.QUIT:
           game_over = True
+          scoresscreen = True
     background_x -= 0.6  #0.6 optimo           
     key = pg.key.get_pressed()
     if not key[pg.K_UP]and not key[pg.K_DOWN]:
@@ -200,11 +209,11 @@ while not game_over:
     sprite_swordfish.draw(screen)
     asteroids_sprites.update()
     asteroids_sprites.draw(screen)
-    print(asteroid_score) 
+    total_score = score+ asteroid_score + landing+ scorelife
+    
+    print(total_score)
     pg.time.get_ticks()
     pg.display.flip()
-    
-"""
- puntuacion = fuente.render("Score: "+str(score+ asteroid_score + landing ), True,(255, 255, 0))
-        screen.blit(puntuacion,(10,10))
- """       
+
+
+gameover.gameover_screen1()

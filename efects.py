@@ -33,9 +33,22 @@ class Sounds():
      self.music_stage1.set_volume(0.1)
      self.music_stage1.play()
 
-   def switchoffplay1(self): 
+   def switchoffplay1(self):
+    pg.mixer.init()
     self.music_stage1.set_volume(0.0)
+
+   def switchoffplay2(self):
+    pg.mixer.init()
+    self.music_stage2.set_volume(0.0)
 
    def play_music2(self):
        self.music_stage2.set_volume(0.1)
        self.music_stage2.play()
+
+
+class Swordfishchange():
+    def __init__(self):
+        self.swordfishcange = pg.image.load("images/aircraft/nave_imbencible.png") 
+
+    def swordfishcangeimage(self):
+        self.swordfishcange = pg.image.load("images/aircraft/nave_imbencible.png") 

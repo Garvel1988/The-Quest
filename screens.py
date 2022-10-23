@@ -1,10 +1,5 @@
 
 import pygame
-from objects import Asteroid,Asteroid2,Asteroid3
-asteroid = Asteroid()
-asteroid2 = Asteroid2()
-asteroid3 = Asteroid3()
-
 
 class Game_screen():
     def __init__(self):
@@ -29,8 +24,12 @@ class Game_screen():
 
 
 
+
+
+
 class Intro():
    def __init__(self):
+     pygame.init()
      self.playing = False
      self.screen_intro = pygame.display.set_mode((1000,600))
      self.background_image  = pygame.image.load("images\space.jpg").convert()
@@ -52,7 +51,7 @@ class Intro():
     while not self.playing:
         pygame.init()
         pygame.display.set_caption("The Quest")
-        print(self.counter)
+        #print(self.counter)
         self.key = pygame.key.get_pressed()
         for event in pygame.event.get():
             if event.type == pygame.QUIT or self.key[pygame.K_SPACE]:
@@ -73,13 +72,21 @@ class Intro():
         self.screen_intro.blit(self.background_image,(self.background_image_x,self.background_image_y))
         self.screen_intro.blit(self.tocontinue,(350,500))
         pygame.display.update()
-    pygame.quit()  
+    pygame.quit()
+    
+     
+
+
+
+
 
 
 
 class Gameover():
    def __init__(self):
-       self.screen_intro = pygame.display.set_mode((1000,600))
+       super().__init__()
+       pygame.init()
+       self.screen_over = pygame.display.set_mode((1000,600))
        self.background  = pygame.image.load("images\gameover.jpg").convert()
        self.background_x =0
        self.background_y = 0
@@ -91,17 +98,39 @@ class Gameover():
        self.key = pygame.key.get_pressed()
        self.playing = False
 
-    
+       #self.puntuacion = self.font.render("Score: "+str(total_score2), True,(255, 255, 0))
+
    def gameover_screen(self):
-    while not self.playing:
-        pygame.init()
-        self.gameover.play()
-        self.screen_intro 
-        self.background
-        for event in pygame.event.get():
-             if event.type == pygame.QUIT or self.key[pygame.K_SPACE]:
-              self.playing = True
-        self.screen_intro.blit(self.background,(0,0))
-        self.screen_intro.blit(self.tocontinue,(350,500))
-        pygame.display.update()
-    pygame.quit()
+        while not self.playing:
+            pygame.init()
+            self.gameover.play()
+            for event in pygame.event.get():
+                key = pygame.key.get_pressed()
+                if event.type == pygame.QUIT or key[pygame.K_SPACE]:
+                    self.playing = True
+            self.screen_over.blit(self.background,(0,0))
+            self.screen_over.blit(self.tocontinue,(350,500))
+            pygame.display.flip()
+        pygame.quit()
+
+
+
+
+
+    
+
+   def gameover_screen1(self):
+       self.gameover.play()
+       self.screen_over
+       self.background
+       if self.key[pygame.K_SPACE] or self.key[pygame.K_SPACE]:
+              self.game_over = True
+       self.screen_over.blit(self.background,(0,0))
+       self.screen_over.blit(self.tocontinue,(350,500))
+    
+
+
+
+
+
+
