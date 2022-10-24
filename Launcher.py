@@ -21,11 +21,11 @@ print(juego)
 
 pg.init()    
 screen_over = pg.display.set_mode((1000,600))
-background  = pg.image.load("images\gameover.jpg").convert()
+background  = pg.image.load("images\endgame.jpg").convert()
 background_x =0
 background_y = 0
 font = pg.font.Font(None, 30)
-continue_text = "press SPACE to continue"+ str(juego)
+continue_text = "press SPACE to continue"
 tocontinue = font.render(continue_text, 1, (255, 255, 255))
 gameover = pg.mixer.Sound("Sounds\gameover.wav")
 gameover.set_volume(0.1)
@@ -51,7 +51,8 @@ while not playing:
         pg.display.update()
 pg.quit()
 
-
+if juego > 200:
+    print("cagun dios")
 
 
 

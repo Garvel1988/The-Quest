@@ -1,7 +1,8 @@
 import pygame as pg, random,time
 from efects import Sounds,Swordfishchange
 from objects import Aircraft, Asteroid, Asteroid2, Asteroid3,life
-from screens import Game_screen, Gameover, Intro
+from screens import Game_screen, Gameover
+
 
 sound = Sounds() 
 swordfishchange = Swordfishchange()
@@ -13,10 +14,10 @@ asteroid2 = Asteroid2()
 asteroid3 = Asteroid3()
 gameover =Gameover()
 key = pg.key.get_pressed()
-   
+
 #######################################################################################################
 def game():
-
+    
     pg.mixer.init()
     pg.init()
 
@@ -79,7 +80,7 @@ def game():
     mensaje_stage1 = fuente_stage.render(text_stage1, 1,(255,255,255))
 
     ##########sprites###############
-
+    
     sprite_swordfish = pg.sprite.Group()
     sprite_swordfish.add(swordfish)
 
@@ -101,6 +102,7 @@ def game():
     final_mision2crono = 0
     landing = 0 ###
     lifeup = 0
+    scorelanding = 1
     
 
 
@@ -165,9 +167,9 @@ def game():
         if lifes == 1:
             screen.blit(life_1,(500, 30))
         if lifes == 0:
-                game_over = True
                 sound.switchoffplay1()
                 sound.switchoffplay2()
+                game_over = True
                 
                 
             
@@ -182,7 +184,8 @@ def game():
            if key[pg.K_SPACE]:
                 final_mision1crono += 1  
                 swordfish.aterrizaje()  
-                landing += 1  
+                landing += 1
+                scorelanding += 1  
                 if final_mision1crono >= 220 :
                     sound.switchoffplay1()           
                     sound.play_music2()  
@@ -193,12 +196,13 @@ def game():
                     asteroid2.asteroid2_movement2()
                     asteroid3.asteroid3_movement2()
                     final_mision1crono = 0     
-    #if landing == 440:    
-        # game_over = True
+    
                         ###################################################################33
         for event in pg.event.get():
             if event.type == pg.QUIT or key[pg.K_ESCAPE]:
                game_over = True
+               sound.switchoffplay1
+               sound.switchoffplay2
         key = pg.key.get_pressed()
         background_x -= 0.6  #0.6 optimo           
         if not key[pg.K_UP]and not key[pg.K_DOWN]:
@@ -226,13 +230,18 @@ def game():
         sprite_swordfish.draw(screen)
         asteroids_sprites.update()
         asteroids_sprites.draw(screen)
-        total_score = score+ asteroid_score + landing+ scorelife   
+        total_score = score+ asteroid_score + landing+ scorelife     
+        if landing == 440:
+            sound.switchoffplay1()
+            sound.switchoffplay2()
+            game_over = True
 
-        
-        print(total_score)
         pg.time.get_ticks()
         pg.display.flip()
+        
+    
 
     return total_score
-
+    
+    
 
