@@ -107,7 +107,7 @@ while not game_over:
         sound.play_ouch()
         imbencible = 0   
         if  imbencible < 150:       
-            swordfish.image = pg.image.load("images/aircraft/nave_imbencible.png") 
+            swordfish.image = pg.image.load("images/aircraft/nave imbencible.png") 
             imbencible += 1
     else:      
       imbencible += 1

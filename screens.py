@@ -123,7 +123,7 @@ class Gameover():
 
    ################################################################
 
-    
+""""
         self.screen_over = pygame.display.set_mode((1000,600))
         self.background  = pygame.image.load("images\endgame.jpg").convert()
         background_x =0
@@ -183,3 +183,4 @@ class Congratulations():
                 if event.type == pygame.QUIT or key[pygame.K_SPACE]:
                     self.playing = True
             pygame.display.flip()
+"""
