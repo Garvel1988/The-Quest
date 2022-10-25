@@ -115,6 +115,7 @@ def game():
         if background_x > -1150.8999999999116: 
             puntuacion = fuente.render("Score: "+str(score+ asteroid_score + landing+ scorelife ), True,(255, 255, 0))
             screen.blit(puntuacion,(10,10))
+
         if colisiones and imbencible >= 150 and background_x > -1150.8999999999116:
             swordfish.image = pg.image.load("images/aircraft/explosion.png")
             sound.play_explosion()
@@ -122,19 +123,19 @@ def game():
             lifes -= 1 
             sound.play_ouch()
             imbencible = 0   
-        if imbencible < 150:       
+            if imbencible < 150:       
                 swordfish.image = pg.image.load("images/aircraft/nave_imbencible.png") 
                 imbencible += 1
         else:      
          imbencible += 1
          swordfish.image = pg.image.load("images/aircraft/nave.png")
-        
-       
+         lifeup  +=1 
+            
         vida_up = pg.sprite.groupcollide(sprite_swordfish,swordfish_life_sprites,False,True)
         if vida_up and imbencible >= 150 and background_x > -1150.8999999999116 and lifeup>= 150:
            lifes += 1
            lifeup = 0
-           scorelife += 60
+           scorelife += 60 
            sound.play_explesion()
         if lifeup >= 600:
            swordfish_life_sprites.add(swordfish_life)
@@ -204,7 +205,7 @@ def game():
                sound.switchoffplay1
                sound.switchoffplay2
         key = pg.key.get_pressed()  
-        background_x -= 3.6  #0.6 optimo           
+        background_x -= 0.6  #0.6 optimo           
         if not key[pg.K_UP]and not key[pg.K_DOWN]:
             turbo = 0
             swordfish.vy = 4
