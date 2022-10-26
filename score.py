@@ -109,11 +109,11 @@ def updatescores():
     conn.close()
 
 
-if __name__ == "__main__":
+#if __name__ == "__main__":
     #createDB()
     #createTable()
     #inser_row(text_name, score)
     #read_ordered("score")
-    read_Rows("score")
+ #   read_Rows("score")
     #delete_row()
 

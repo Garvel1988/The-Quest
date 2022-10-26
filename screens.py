@@ -3,6 +3,7 @@ import pygame
 import sys
 from efects import *
 from objects import *
+from score import *
 
 sound = Sounds()
 
@@ -144,9 +145,69 @@ class Congratulations():
             pygame.display.flip()
 
 
+     def credits_screen(self):
+            sound.congratulation()
+            while not self.playing:
+                for event in pygame.event.get():
+                    key = pygame.key.get_pressed()
+                    if event.type == pygame.QUIT or key[pygame.K_SPACE]:
+                        self.playing = True
+                        sound.switchoffcongratulation()
+                self.screen_congrat.blit(self.backgroundcongrat,(0,0))
+                self.screen_congrat.blit(self.tocontinue,(350,500))
+                pygame.display.flip()
 
 
 
+""""
 
+class Scorecredits():
+     def __init__(self):
+        pygame.init()
+        self.player1 = read_Rows("Score")
+        self.player2 = read_Rows2("Score")
+        self.player3 = read_Rows3("Score")
+        self.player4 = read_Rows4("Score")
+        self. player5 = read_Rows5("Score")    
+        self.screen_over = pg.display.set_mode((1000,600))
+        self.background  = pg.image.load("images\exosphere.jpg").convert()
+        self.background_x =0
+        self.background_y = 0
+        self.font = pg.font.Font(None, 60)
+        self.textplayer1= (self.player1)
+        self.textplayer2 =(self.player2)
+        self.textplayer3= (self.player3)
+        self.extplayer4 =(self.player4)
+        self.textplayer5= (self.player5)
+        self.playerrender = self.font.render(self.player1, 1, (255, 255, 0))
+        self.playe2render = self.font.render(self.player2, 1, (255, 255, 0))
+        self.playe3render = self.font.render(self.player3, 1, (255, 255, 0))
+        self.playe4render = self.font.render(self.player4, 1, (255, 255, 0))
+        self.playe5render = self.font.render(self.player5, 1, (255, 255, 0))
+
+
+        self.credits_music = pg.mixer.Sound("Sounds\gameover.wav")
+        self.credits_music.set_volume(0.1)
+        self.key = pg.key.get_pressed() 
+        self.playing = False
+
+     def scorecredtis_screen(self):
+        while not self.playing:
+            self.credits_music.play
+            pg.init()
+            for event in pg.event.get():
+                self.key = pg.key.get_pressed()
+                if event.type == pg.QUIT or self.key[pg.K_ESCAPE]:
+                    self.playing = True
+        self.screen_over.blit(self.background,(0,0))
+        self.screen_over.blit(self.playerrender,(370,50))
+        self.screen_over.blit(self.playe2render,(370,140))
+        self.screen_over.blit(self.playe4render,(370,320))
+        self.screen_over.blit(self.playe5render,(370,410))
+        pg.display.flip()
+    
+     pygame.quit()
+
+"""
 
 

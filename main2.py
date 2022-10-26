@@ -1,6 +1,6 @@
 from gettext import pgettext
 from turtle import Screen
-import pygame as pg, random,time
+import pygame as pg
 from efects import Sounds,Swordfishchange
 from objects import Aircraft, Asteroid, Asteroid2, Asteroid3,life
 from screens import Congratulations, Game_screen, Gameover
@@ -174,7 +174,7 @@ def game():
         if lifes == 0:
                 sound.switchoffplay1()
                 sound.switchoffplay2()
-                #game_over = True
+                game_over = True
                 
                 
             
@@ -208,7 +208,7 @@ def game():
                sound.switchoffplay1
                sound.switchoffplay2
         key = pg.key.get_pressed()  
-        background_x -= 0.6 #############################0.6 optimo       #################    
+        background_x -= 3.6 #############################0.6 optimo       #################    
         if not key[pg.K_UP]and not key[pg.K_DOWN]:
             turbo = 0
             swordfish.vy = 4
@@ -241,7 +241,6 @@ def game():
             sound.switchoffplay2()
             congratulations.congratulations_screen()
 
-        print(lifeup)
         pg.time.get_ticks()
         pg.display.flip()
         
