@@ -6,7 +6,7 @@ import pygame as pg
 from efects import Sounds
 from objects import Aircraft, Asteroid, Asteroid2, Asteroid3,life
 from screens import Game_screen, Gameover, Intro
-from main2 import game, asteroid
+from main2 import game
 from score import *
 
 
@@ -53,7 +53,7 @@ while not playing:
         background
         for event in pg.event.get():
             key = pg.key.get_pressed()
-            if event.type == pg.QUIT or key[pg.K_SPACE]:
+            if event.type == pg.QUIT or key[pg.K_ESCAPE]:
                 playing = True
             if event.type == pg.KEYDOWN:
                 if event.key == pg.K_BACKSPACE:
@@ -80,7 +80,7 @@ if __name__ == "__main__":
     #¡#createDB()
     #createTable()
     #read_ordered("score")
-    inser_row(text_name,totalgamescore )
+    #inser_row(text_name,totalgamescore )
     read_ordered("score")
     #player5 = read_Rows5()
 

@@ -17,6 +17,21 @@ class Sounds():
      self.music_stage1 = pg.mixer.Sound("Sounds\Spiegel.wav")
      self.music_stage2 = pg.mixer.Sound("Sounds\Rush.wav")
      self.explosion = pg.mixer.Sound("Sounds\explosion.wav")
+     self.music_congratulation = pg.mixer.Sound("Sounds/toogood.wav")
+     self.turbosound = pg.mixer.Sound("Sounds/turbo_rocket.wav")
+
+
+   def turbo(self):
+       self.turbosound.set_volume(0.1)
+       self.turbosound.play()
+
+   def congratulation(self):
+       self.music_congratulation.set_volume(0.1)
+       self.music_congratulation.play()
+    
+   def switchoffcongratulation(self):
+       pg.mixer.init()
+       self.music_congratulation.set_volume(0.0)
 
 
    def play_explosion(self):

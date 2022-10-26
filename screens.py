@@ -1,7 +1,10 @@
 
-from calendar import c
 import pygame
 import sys
+from efects import *
+from objects import *
+
+sound = Sounds()
 
 class Game_screen():
     def __init__(self):
@@ -13,11 +16,11 @@ class Game_screen():
        self.final_mision1 = -1150.8999999999116
        self.final_mision2 = -1155.8999999999116
        self.icon = pygame.image.load("images\icon.PNG")
-       
        self.fuente_comunica = pygame.font.Font(None, 30)
-       self.text_aterriza = "has llegado a la orbita pulsa espacio para aterizar"
+       self.text_aterriza = "has llegado a la orbita manten DCHA para piloto automatico"
        self.mensaje_aterriza = self.fuente_comunica.render(self.text_aterriza, 1, (255, 255, 255))
        self.jet = pygame.image.load("images/jet.jpg")
+
 
 
     def landing_radio(self):
@@ -81,10 +84,6 @@ class Intro():
 ##################################################################################################
 
 
-
-
-
-
 class Gameover():
    def __init__(self):
        super().__init__()
@@ -101,14 +100,9 @@ class Gameover():
        self.key = pygame.key.get_pressed()
        self.playing = False
 
-       
-
-       #self.puntuacion = self.font.render("Score: "+str(total_score2), True,(255, 255, 0))
-
    def gameover_screen(self):
         while not self.playing:
             pygame.init()
-            self.gameover.play()
             for event in pygame.event.get():
                 key = pygame.key.get_pressed()
                 if event.type == pygame.QUIT or key[pygame.K_SPACE]:
@@ -123,42 +117,6 @@ class Gameover():
 
    ################################################################
 
-""""
-        self.screen_over = pygame.display.set_mode((1000,600))
-        self.background  = pygame.image.load("images\endgame.jpg").convert()
-        background_x =0
-        background_y = 0
-        font = pygame.font.Font(None, 30)
-        continue_text = "press SPACE to continue"
-        tocontinue = font.render(continue_text, 1, (255, 255, 255))
-        gameover = pygame.mixer.Sound("Sounds\gameover.wav")
-        gameover.set_volume(0.1)
-        key = pygame.key.get_pressed()
-        playing = False
-
-        score_text = "SCORE  " + str(juego)
-        fontscore  =  pygame.font.Font(None, 60)
-        scorepint = fontscore.render(score_text,1,(255,255,0))
-
-        while not playing:
-                pygame.init()
-                gameover.play()
-                screen_over 
-                background
-                for event in pygame.event.get():
-                    key = pygame.key.get_pressed()
-                    if event.type == pg.QUIT or key[pg.K_SPACE]:
-                        playing = True
-                    screen_over.blit(background,(0,0))
-                    screen_over.blit(tocontinue,(350,500))
-                    screen_over.blit(scorepint,(350,50))
-                pygame.display.update()
-        pygame.quit()
-
- 
- 
-
-
 
 class Congratulations():
      def __init__(self):
@@ -168,19 +126,27 @@ class Congratulations():
        self.backgroundcongrat_x =0
        self.backgroundcongrat_y = 0
        self.font = pygame.font.Font(None, 30)
-       self.continue_text = "Congratulations"
+       self.continue_text = "MISSION  ACCOMPLISHED"
        self.tocontinue = self.font.render(self.continue_text, 1, (255, 255, 255))
-       self.gameover = pygame.mixer.Sound("Sounds\gameover.wav")
-       self.gameover.set_volume(0.1)
        self.key = pygame.key.get_pressed()
        self.playing = False
     
      def congratulations_screen(self):
+        sound.congratulation()
         while not self.playing:
-            self.gameover.play()
             for event in pygame.event.get():
                 key = pygame.key.get_pressed()
                 if event.type == pygame.QUIT or key[pygame.K_SPACE]:
                     self.playing = True
+                    sound.switchoffcongratulation()
+            self.screen_congrat.blit(self.backgroundcongrat,(0,0))
+            self.screen_congrat.blit(self.tocontinue,(350,500))
             pygame.display.flip()
-"""
+
+
+
+
+
+
+
+

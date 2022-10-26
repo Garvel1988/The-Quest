@@ -18,9 +18,12 @@ class Aircraft(pygame.sprite.Sprite):
         self.landing = 0
         self.life_3 =  pygame.image.load("images/aircraft/3_vidas.png")
 
+    def explotion(self): 
+        self.rect.x -= 80
+    
+    def center(self):
+        self.rect.x= 45
 
-
-           
     def go_up(self):
         self.rect.y -= self.vy
         self.image = pygame.image.load("images/aircraft/naveup.png")
@@ -115,7 +118,7 @@ class Asteroid2(pygame.sprite.Sprite):
     
     def asteroid2_noscore(self):
         self.rect.x -= self.speed
-        if self.rect.left < -30 :
+        if self.rect.left < -100 :
             self._spritex=1100
             self._spritex -= self.speed
             self.rect.centerx = self._spritex
@@ -158,7 +161,7 @@ class Asteroid3(pygame.sprite.Sprite):
             
     def asteroid3_noscore(self):
         self.rect.x -= self.speed
-        if self.rect.left < -30 :
+        if self.rect.left < -300 :
             self._spritex=1100
             self._spritex -= self.speed
             self.rect.centerx = self._spritex
