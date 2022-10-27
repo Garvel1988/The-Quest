@@ -17,6 +17,7 @@ pg.init()
 running = False
 #########################################################3
 while not running:
+    key = pg.key.get_pressed() 
     intro = Intro()
     intro.intro_screen1()
     totalgamescore = game()
@@ -104,13 +105,13 @@ while not running:
             key = pg.key.get_pressed()
         if event.type == pg.QUIT or key[pg.K_SPACE]:
             playing = True
+        if key[pg.K_x]:
+           exit() 
         screen_over.blit(background,(0,0))
         screen_over.blit(playerrender,(370,50))
         screen_over.blit(playe2render,(370,140))
         screen_over.blit(playe3render,(370,230))
         screen_over.blit(playe4render,(370,320))
         screen_over.blit(playe5render,(370,410))
-        pg.display.flip()
-if event.type == pg.QUIT:
-    running = False   
+        pg.display.flip()  
 pg.quit()

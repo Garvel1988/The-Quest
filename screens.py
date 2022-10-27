@@ -131,6 +131,8 @@ class Congratulations():
        self.tocontinue = self.font.render(self.continue_text, 1, (255, 255, 255))
        self.key = pygame.key.get_pressed()
        self.playing = False
+
+       #self self.backgroundcongrat  = pygame.image.load("images\congratulations.jpg").convert()
     
      def congratulations_screen(self):
         sound.congratulation()

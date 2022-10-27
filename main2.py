@@ -243,10 +243,10 @@ def game():
 
         pg.time.get_ticks()
         pg.display.flip()
-        
+        print(landing) 
     
 
     return total_score
     
-    
+ 
 
