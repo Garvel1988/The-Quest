@@ -7,6 +7,8 @@ from score import *
 
 sound = Sounds()
 
+
+
 class Game_screen():
     def __init__(self):
        self.screen = pygame.display.set_mode((1000,600))
@@ -128,12 +130,19 @@ class Congratulations():
        self.backgroundcongrat_y = 0
        self.font = pygame.font.Font(None, 30)
        self.continue_text = "MISSION  ACCOMPLISHED"
-       self.tocontinue = self.font.render(self.continue_text, 1, (255, 255, 255))
+       self.tocontinue = self.font.render(self.continue_text,1, (255, 255, 255))
        self.key = pygame.key.get_pressed()
        self.playing = False
 
-       #self self.backgroundcongrat  = pygame.image.load("images\congratulations.jpg").convert()
-    
+       self.backgroundcredits  = pygame.image.load("images/nigth_sky.jpg").convert()
+       self.counter = 0
+       self.credits_text1 = " CREDITS"
+       
+       self.screen_credtis = pygame.display.set_mode((1000,600))
+       self.text_box = pygame.Rect(10,10,40,120)
+       self.x = 350
+       self.y = 100
+
      def congratulations_screen(self):
         sound.congratulation()
         while not self.playing:
@@ -145,23 +154,115 @@ class Congratulations():
             self.screen_congrat.blit(self.backgroundcongrat,(0,0))
             self.screen_congrat.blit(self.tocontinue,(350,500))
             pygame.display.flip()
+        
+        
+
 
 
      def credits_screen(self):
-            sound.congratulation()
+            pygame.init()
+            sound.credits()
             while not self.playing:
+                self.counter += 1
                 for event in pygame.event.get():
                     key = pygame.key.get_pressed()
                     if event.type == pygame.QUIT or key[pygame.K_SPACE]:
-                        self.playing = True
-                        sound.switchoffcongratulation()
-                self.screen_congrat.blit(self.backgroundcongrat,(0,0))
-                self.screen_congrat.blit(self.tocontinue,(350,500))
-                pygame.display.flip()
+                        self.playing = True          
+                if self.counter == 2000:
+                   self.credits_text1 = "Producer   Ruben.Velasco"
+                if self.counter == 4000:
+                    self.credits_text1 = "Designer  Ruben.Velasco"
+                if self.counter == 6000:
+                    self.credits_text1 = "Audio Cowboy bebop soundtrack"
+                if self.counter == 8000:
+                    self.credits_text1 = "2D artist Ruben.Velasco"
+                if self.counter == 10000:
+                    self.credits_text1 = "Contact Robingarvel@gmail.com"
+                if self.counter == 12000:
+                   self.credits_text1 = "Thanks to Keepcoding Academy"
+                if self.counter > 14000:
+                          self.counter = 0
+                self.screen_credtis.blit(self.backgroundcredits,(-70,-200))
+                self.credit_render = self.font.render(self.credits_text1,1, (255, 255, 255))
+                self.screen_credtis.blit(self.credit_render,(self.x,self.y))               
+                pygame.display.flip() 
+
+"""
+screen_congrat = pygame.display.set_mode((1000,600))
+    backgroundcongrat_x =0
+    backgroundcongrat_y = 0
+    font = pygame.font.Font(None, 30)
+    continue_text = "MISSION  ACCOMPLISHED"
+    tocontinue = font.render(continue_text,1, (255, 255, 255))
+    key = pygame.key.get_pressed()
+    credit = True
+    backgroundcredits  = pygame.image.load("images/nigth_sky.jpg").convert()
+    counter = 0
+    credits_text1 = " CREDITS" 
+    screen_credtis = pygame.display.set_mode((1000,600))
+    text_box = pygame.Rect(10,10,40,120)
+    x = 350
+    y = 100
+
+
+    while credit:
+        sound.credits()
+        counter += 1
+        for event in pygame.event.get():
+            key = pygame.key.get_pressed()
+            if event.type == pygame.QUIT or key[pygame.K_c]:
+               credit = False
+            if key[pg.K_x]:
+               exit()                       
+        if counter == 2000:
+            credits_text1 = "Producer   Ruben.Velasco"
+        if counter == 4000:
+            credits_text1 = "Designer  Ruben.Velasco"
+        if counter == 6000:
+            credits_text1 = "Audio Cowboy bebop soundtrack"
+        if counter == 8000:
+            credits_text1 = "2D artist Ruben.Velasco"
+        if  counter == 10000:
+            credits_text1 = "Contact Robingarvel@gmail.com"
+        if counter == 12000:
+            credits_text1 = "Thanks to Keepcoding Academy"
+        if counter > 14000:
+            counter = 0
+        screen_credtis.blit(backgroundcredits,(-70,-200))
+        credit_render = font.render(credits_text1,1, (255, 255, 255))
+        screen_credtis.blit(credit_render,(x,y))               
+        pygame.display.flip()      
+    pg.quit
 
 
 
-""""
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 class Scorecredits():
      def __init__(self):

@@ -19,7 +19,22 @@ class Sounds():
      self.explosion = pg.mixer.Sound("Sounds\explosion.wav")
      self.music_congratulation = pg.mixer.Sound("Sounds/toogood.wav")
      self.turbosound = pg.mixer.Sound("Sounds/turbo_rocket.wav")
+     self.car24 = pg.mixer.Sound("Sounds/Car24.wav")
+     self.digging = pg.mixer.Sound("Sounds/digging.wav")
 
+   def scores(self):
+       self.digging.set_volume(0.1)
+       self.digging.play()
+
+   def scoresoff(self):
+       self.digging.set_volume(0.0)
+
+   def credits(self):
+       self.car24.set_volume(0.1)
+       self.car24.play()
+   
+   def credits_off(self):
+        self.car24.set_volume(0.1)
 
    def turbo(self):
        self.turbosound.set_volume(0.1)

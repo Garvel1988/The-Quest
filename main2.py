@@ -123,7 +123,11 @@ def game():
             score -= 50
             lifes -= 1 
             sound.play_ouch()
-            imbencible = 0  
+            imbencible = 0
+        if imbencible>10 and imbencible <20:
+            swordfish.image = pg.image.load("images/aircraft/explosion4.png")
+        if imbencible>20 and imbencible <30:
+                swordfish.image = pg.image.load("images/aircraft/explosion5.png")
         if imbencible < 180 and imbencible> 40:       
                 swordfish.image = pg.image.load("images/aircraft/nave_imbencible.png") 
                 imbencible += 1
@@ -204,15 +208,15 @@ def game():
                         ###################################################################33
         for event in pg.event.get():
             if event.type == pg.QUIT or key[pg.K_ESCAPE]:
-               game_over = True
                sound.switchoffplay1
                sound.switchoffplay2
+               game_over = True
         key = pg.key.get_pressed()  
-        background_x -= 3.6 #############################0.6 optimo       #################    
+        background_x -= 0.6 #############################0.6 optimo       #################    
         if not key[pg.K_UP]and not key[pg.K_DOWN]:
             turbo = 0
             swordfish.vy = 4
-        if key[pg.K_UP] and imbencible >= 100:
+        if key[pg.K_UP] and imbencible >= 100 and swordfish.rect.x < 100:
             turbo +=20
             swordfish.go_up()
             if turbo >= 500:
@@ -220,7 +224,7 @@ def game():
                 swordfish.image = pg.image.load("images/aircraft/naveup_turbo.png")
             if  imbencible < 150 and imbencible> 50:
                 swordfish.image = pg.image.load("images/aircraft/nave_imbencibleup.png")         
-        if key[pg.K_DOWN]and imbencible >= 100:
+        if key[pg.K_DOWN]and imbencible >= 100 and swordfish.rect.x < 100:
             turbo +=20
             swordfish.go_down()
             if turbo >= 500:
@@ -237,13 +241,11 @@ def game():
         total_score = score+ asteroid_score + landing+ scorelife     
         if landing == 440:
             game_over = True
-            sound.switchoffplay1()
-            sound.switchoffplay2()
-            congratulations.congratulations_screen()
+            
 
         pg.time.get_ticks()
         pg.display.flip()
-        print(landing) 
+        
     
 
     return total_score
