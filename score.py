@@ -65,7 +65,7 @@ def read_Rows4(field):
     cursor.execute(Instruction)
     datos = cursor.fetchall()
     conn.close()
-    return(str(datos[3][0])) +''+ (str(datos[3][1]))
+    return(str(datos[3][0])) +' '+ (str(datos[3][1]))
 
 def read_Rows5(Score):
     conn = sql.connect("scoreplayer.db")
@@ -75,8 +75,20 @@ def read_Rows5(Score):
     datos = cursor.fetchall()
     conn.close()
     print(datos)
-    return(str(datos[4][0])) +''+(str(datos[4][1]))
-    
+    return(str(datos[4][0])) +' '+(str(datos[4][1]))
+
+def read_Rows6(Score):
+    conn = sql.connect("scoreplayer.db")
+    cursor = conn.cursor()
+    Instruction = f"SELECT * FROM players ORDER BY {Score} DESC"
+    cursor.execute(Instruction)
+    datos = cursor.fetchall()
+    conn.close()
+    print(datos)
+    return((datos[4][1]))
+
+
+
     
 
 def read_ordered(field):
@@ -114,6 +126,6 @@ def updatescores():
     #createTable()
     #inser_row(text_name, score)
     #read_ordered("score")
- #   read_Rows("score")
+    read_Rows6("score")
     #delete_row()
 

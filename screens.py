@@ -109,7 +109,7 @@ class Gameover():
             for event in pygame.event.get():
                 key = pygame.key.get_pressed()
                 if event.type == pygame.QUIT or key[pygame.K_SPACE]:
-                     sys.exit()
+                    self.playing = True
             self.screen_over.blit(self.background,(0,0))
             self.screen_over.blit(self.tocontinue,(350,500))
             pygame.display.flip()
@@ -144,8 +144,10 @@ class Congratulations():
        self.y = 100
 
      def congratulations_screen(self):
+        pygame.init()
         sound.congratulation()
         while not self.playing:
+    
             for event in pygame.event.get():
                 key = pygame.key.get_pressed()
                 if event.type == pygame.QUIT or key[pygame.K_SPACE]:
@@ -154,8 +156,9 @@ class Congratulations():
             self.screen_congrat.blit(self.backgroundcongrat,(0,0))
             self.screen_congrat.blit(self.tocontinue,(350,500))
             pygame.display.flip()
+    
         
-        
+    
 
 
 
