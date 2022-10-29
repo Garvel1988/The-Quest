@@ -14,8 +14,8 @@ class Sounds():
     pg.mixer.Sound("Sounds/shame.wav"),
     pg.mixer.Sound("Sounds/point.wav")]      
 
-     self.music_stage1 = pg.mixer.Sound("Sounds\Spiegel.wav")
-     self.music_stage2 = pg.mixer.Sound("Sounds\Rush.wav")
+     self.music_stage1 = pg.mixer.Sound("Sounds/Spiegel.wav")
+     self.music_stage2 = pg.mixer.Sound("Sounds/Rush.wav")
      self.explosion = pg.mixer.Sound("Sounds\explosion.wav")
      self.music_congratulation = pg.mixer.Sound("Sounds/toogood.wav")
      self.turbosound = pg.mixer.Sound("Sounds/turbo_rocket.wav")

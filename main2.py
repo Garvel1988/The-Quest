@@ -38,12 +38,12 @@ def game():
     pg.display.set_caption("The Quest")
 
 
-    background_image  = pg.image.load("images\planets\ilios.png").convert() #1.20 finalizar pantalla
+    background_image  = pg.image.load("images/planets/ilios.png").convert() #1.20 finalizar pantalla
     
     background_x = 0
     background_y =0
     
-    icon = pg.image.load("images\icon.PNG")
+    icon = pg.image.load("images/icon.PNG")
     
 
     life_6 =  pg.image.load("images/aircraft/6_vidas.png").convert()
@@ -118,7 +118,7 @@ def game():
               swordfish.image = pg.transform.scale(swordfish.image, (30, 20))
         else:
             imbencible += 1
-        
+
 ###################################funcion d vida ##########################3
         lifeup  +=1 
         vida_up = pg.sprite.groupcollide(sprite_swordfish,swordfish_life_sprites,False,True)
@@ -179,7 +179,7 @@ def game():
                 if final_mision1crono >= 220 :
                     sound.switchoffplay1()           
                     sound.play_music2()  
-                    background_image  = pg.image.load("images\planets\movII.png").convert()
+                    background_image  = pg.image.load("images/planets/movII.png").convert()
                     background_x = 0
                     swordfish.rect.center = 100,300             
                     asteroid.asteroid_movement2()
@@ -190,11 +190,11 @@ def game():
                         ###################################################################33
         for event in pg.event.get():
             if event.type == pg.QUIT or key[pg.K_ESCAPE]:
-               sound.switchoffplay1
-               sound.switchoffplay2
+             #  sound.switchoffplay1
+              # sound.switchoffplay2
                game_over = True
         key = pg.key.get_pressed()  
-        background_x -= 4.6 #############################0.6 optimo       #################    
+        background_x -= 0.6 #############################0.6 optimo       #################    
         if not key[pg.K_UP]and not key[pg.K_DOWN]:
             turbo = 0
             swordfish.vy = 4
@@ -222,11 +222,12 @@ def game():
         asteroids_sprites.draw(screen)
         total_score = score+ asteroid_score + landing+ scorelife     
         if landing == 440:
-           game_over = True
+           #game_over = True
            sound.switchoffplay1()
            sound.switchoffplay2()
            congratulations.congratulations_screen() 
            game_over = True
+         
         pg.time.get_ticks()
         pg.display.flip()  
         

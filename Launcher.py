@@ -30,7 +30,7 @@ while not running:
     if totalgamescore > int(player_comparison):
         pg.init()    
         screen_over = pg.display.set_mode((1000,600))
-        background  = pg.image.load("images\endgame.jpg").convert()
+        background  = pg.image.load("images/endgame.jpg").convert()
         background_x =0
         background_y = 0
         font = pg.font.Font(None, 30)
@@ -39,7 +39,7 @@ while not running:
 
         write_text = "Write your initials and press SPACE to continue"
         write_tocontinue = font.render(write_text, 1, (255, 255, 255))
-        gameover = pg.mixer.Sound("Sounds\gameover.wav")
+        gameover = pg.mixer.Sound("Sounds/gameover.wav")
         gameover.set_volume(0.1)
         key = pg.key.get_pressed()
         playing = False
@@ -92,7 +92,7 @@ while not running:
         font = pg.font.Font(None, 30)
         write_textover = "press SPACE to continue"
         write_tocontinue = font.render(write_textover, 1, (255, 255, 255))
-        gameover = pg.mixer.Sound("Sounds\gameover.wav")
+        gameover = pg.mixer.Sound("Sounds/gameover.wav")
         gameover.set_volume(0.1)
         key = pg.key.get_pressed()
         playing = False
@@ -126,7 +126,7 @@ while not running:
     player5 = read_Rows5("Score")     
     pg.init()    
     screen_over = pg.display.set_mode((1000,600))
-    background  = pg.image.load("images\exosphere.jpg").convert()
+    background  = pg.image.load("images/exosphere.jpg").convert()
     background_x =0
     background_y = 0
     font = pg.font.Font(None, 60)
@@ -144,7 +144,7 @@ while not running:
     playe3render = font.render(player3, 1, (255, 255, 0))
     playe4render = font.render(player4, 1, (255, 255, 0))
     playe5render = font.render(player5, 1, (255, 255, 0))
-    credits_music = pg.mixer.Sound("Sounds\gameover.wav")
+    credits_music = pg.mixer.Sound("Sounds/gameover.wav")
     #gameover.set_volume(0.1)
     key = pg.key.get_pressed() 
     scores = False
