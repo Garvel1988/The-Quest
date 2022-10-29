@@ -194,7 +194,7 @@ def game():
                sound.switchoffplay2
                game_over = True
         key = pg.key.get_pressed()  
-        background_x -= 0.6 #############################0.6 optimo       #################    
+        background_x -= 4.6 #############################0.6 optimo       #################    
         if not key[pg.K_UP]and not key[pg.K_DOWN]:
             turbo = 0
             swordfish.vy = 4
