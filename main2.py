@@ -24,18 +24,12 @@ def game():
     pg.init()
 
     game_over = False
-
-
-
     sound = Sounds() 
-
     swordfish = Aircraft()
-    asteroide = Asteroid()
     swordfish_life = life()
     asteroid=Asteroid() 
     asteroid2 = Asteroid2()
-    asteroid3 = Asteroid3()
-    gameover =Gameover()
+    asteroid3 = Asteroid3() 
     key = pg.key.get_pressed()
     
 
@@ -43,25 +37,22 @@ def game():
     screen = pg.display.set_mode((1000,600))
     pg.display.set_caption("The Quest")
 
-    #images
+
     background_image  = pg.image.load("images\planets\ilios.png").convert() #1.20 finalizar pantalla
-    stage2 = pg.image.load("images\planets\smallpurple.png").convert()
+    
     background_x = 0
     background_y =0
-    final_mision1 = -1150.8999999999116
-    final_mision2 = -1155.8999999999116
+    
     icon = pg.image.load("images\icon.PNG")
-    ###
+    
 
     life_6 =  pg.image.load("images/aircraft/6_vidas.png").convert()
     life_5 =  pg.image.load("images/aircraft/5_vidas.png").convert()
-    life_4 =  pg.image.load("images/aircraft/4_vidas.png").convert()#
+    life_4 =  pg.image.load("images/aircraft/4_vidas.png").convert()
     life_3 =  pg.image.load("images/aircraft/3_vidas.png").convert()
     life_2 =  pg.image.load("images/aircraft/2_vidas.png").convert()
     life_1 =  pg.image.load("images/aircraft/1_vida.png").convert()
-    nave_imbencible = pg.image.load("images/aircraft/nave.png")
-    jet = pg.image.load("images/jet.jpg")
-
+  
     pg.display.set_icon(icon)
 
     pg.mixer.init()
@@ -72,16 +63,7 @@ def game():
     time_clock = pg.time.Clock()
 
     fuente = pg.font.Font(None, 60)#
-    fuente_comunica = pg.font.Font(None, 30) #
-    fuente_stage = pg.font.Font(None, 30)
-
-    text_stage1 = "mision: planeta Épsilon"
-    text = "Game Over"
-
-    mensaje = fuente.render(text, 1, (255, 255, 255))
-    mensaje_stage1 = fuente_stage.render(text_stage1, 1,(255,255,255))
-
-    ##########sprites###############
+    
     
     sprite_swordfish = pg.sprite.Group()
     sprite_swordfish.add(swordfish)
@@ -92,21 +74,19 @@ def game():
     swordfish_life_sprites =pg.sprite.Group()
     swordfish_life_sprites.add(swordfish_life)
 
-    life_restart = 150 ###
-    puntuacion= 0
 
+    puntuacion= 0
     score = 0 
     scorelife = 0
     imbencible = 180 
     turbo = 0
     lifes = 3   ###
     final_mision1crono = 0
-    final_mision2crono = 0
     landing = 0 ###
     lifeup = 600
     scorelanding = 1
+    sound.play_music1()
 
-    sound.play_music1() 
     while not game_over:      
         pg.init() 
         colisiones = pg.sprite.groupcollide(sprite_swordfish,asteroids_sprites,False,False)         
@@ -114,7 +94,7 @@ def game():
         if background_x > -1150.8999999999116: 
             puntuacion = fuente.render("Score: "+str(score+ asteroid_score + landing+ scorelife ), True,(255, 255, 0))
             screen.blit(puntuacion,(10,10))
-                   #####Explisiones####################33
+                   #####Explisiones####################
         if colisiones and imbencible >= 180 and background_x > -1150.8999999999116:
             swordfish.image = pg.image.load("images/aircraft/explosion2.png")
             swordfish.explotion()
@@ -134,6 +114,8 @@ def game():
                 swordfish.center()
         if imbencible >= 180:   
                    swordfish.image = pg.image.load("images/aircraft/nave.png")
+        if swordfish.rect.x >= 675:
+              swordfish.image = pg.transform.scale(swordfish.image, (30, 20))
         else:
             imbencible += 1
         
@@ -212,7 +194,7 @@ def game():
                sound.switchoffplay2
                game_over = True
         key = pg.key.get_pressed()  
-        background_x -= 4.6 #############################0.6 optimo       #################    
+        background_x -= 0.6 #############################0.6 optimo       #################    
         if not key[pg.K_UP]and not key[pg.K_DOWN]:
             turbo = 0
             swordfish.vy = 4
@@ -244,7 +226,7 @@ def game():
            sound.switchoffplay1()
            sound.switchoffplay2()
            congratulations.congratulations_screen() 
-       
+           game_over = True
         pg.time.get_ticks()
         pg.display.flip()  
         

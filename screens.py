@@ -59,7 +59,7 @@ class Intro():
     while not self.playing:
         pygame.init()
         pygame.display.set_caption("The Quest")
-        #print(self.counter)
+        
         self.key = pygame.key.get_pressed()
         for event in pygame.event.get():
             if event.type == pygame.QUIT or self.key[pygame.K_SPACE]:
@@ -81,7 +81,7 @@ class Intro():
         self.screen_intro.blit(self.background_image,(self.background_image_x,self.background_image_y))
         self.screen_intro.blit(self.tocontinue,(350,500))
         pygame.display.update()
-    #pygame.quit()
+    
     
     
 ##################################################################################################
@@ -128,8 +128,12 @@ class Congratulations():
        self.backgroundcongrat  = pygame.image.load("images\congratulations.jpg").convert()
        self.backgroundcongrat_x =0
        self.backgroundcongrat_y = 0
-       self.font = pygame.font.Font(None, 30)
+       self.font = pygame.font.Font(None, 50)
        self.continue_text = "MISSION  ACCOMPLISHED"
+       self.fontover = pg.font.Font(None, 30)
+       self.write_textover = "press SPACE to continue"
+       self.write_textover_render = self.fontover.render(self.write_textover, 1, (255, 255, 255))
+
        self.tocontinue = self.font.render(self.continue_text,1, (255, 255, 255))
        self.key = pygame.key.get_pressed()
        self.playing = False
@@ -154,7 +158,8 @@ class Congratulations():
                     self.playing = True
                     sound.switchoffcongratulation()
             self.screen_congrat.blit(self.backgroundcongrat,(0,0))
-            self.screen_congrat.blit(self.tocontinue,(350,500))
+            self.screen_congrat.blit(self.tocontinue,(320,300))
+            self.screen_congrat.blit(self.write_textover_render,(300,500))
             pygame.display.flip()
     
         

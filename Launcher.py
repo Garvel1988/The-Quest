@@ -34,6 +34,9 @@ while not running:
         background_x =0
         background_y = 0
         font = pg.font.Font(None, 30)
+        text_record = "N E W  R E C O R D"
+        text_record_render = font.render(text_record, 1, (255, 255, 255))
+
         write_text = "Write your initials and press SPACE to continue"
         write_tocontinue = font.render(write_text, 1, (255, 255, 255))
         gameover = pg.mixer.Sound("Sounds\gameover.wav")
@@ -68,6 +71,7 @@ while not running:
                 screen_over.blit(write_tocontinue,(270,500))
                 screen_over.blit(scorepint,(350,50))
                 screen_over.blit(text_surface,(330,200))
+                screen_over.blit(text_record_render,(350,90))
                 pg.display.update()
         pg.quit()
         text_name = text_name.upper()
@@ -82,7 +86,7 @@ while not running:
     if totalgamescore<= int(player_comparison):
         pg.init() 
         screen_over = pg.display.set_mode((1000,600))
-        backgroundover  = pg.image.load("images\gameover.jpg").convert()
+        backgroundover  = pg.image.load("images/endgame.jpg").convert()
         background_x =0
         background_y = 0
         font = pg.font.Font(None, 30)
@@ -107,7 +111,7 @@ while not running:
                     if event.type == pg.QUIT or key[pg.K_SPACE]:
                         playing = True
                 screen_over.blit(backgroundover,(0,0))
-                screen_over.blit(write_tocontinue,(320,500))
+                screen_over.blit(write_tocontinue,(340,500))
                 screen_over.blit(scorepint,(350,50))
                 pg.display.update()
         pg.quit()
