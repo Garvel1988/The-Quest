@@ -12,7 +12,7 @@ instalar las dependencias, ejecuta
 
 pip install -r requirements.txt  
 
-# Ejecucion
+# Ejecución
 
 ejecutar en la consola  
 
