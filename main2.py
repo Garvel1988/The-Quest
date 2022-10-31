@@ -46,12 +46,12 @@ def game():
     icon = pg.image.load("images/icon.PNG")
     
 
-    life_6 =  pg.image.load("images/aircraft/6_vidas.png").convert()
-    life_5 =  pg.image.load("images/aircraft/5_vidas.png").convert()
-    life_4 =  pg.image.load("images/aircraft/4_vidas.png").convert()
-    life_3 =  pg.image.load("images/aircraft/3_vidas.png").convert()
-    life_2 =  pg.image.load("images/aircraft/2_vidas.png").convert()
-    life_1 =  pg.image.load("images/aircraft/1_vida.png").convert()
+    life_6 =  pg.image.load("images/aircraft/6_vidas.png").convert_alpha()
+    life_5 =  pg.image.load("images/aircraft/5_vidas.png").convert_alpha()
+    life_4 =  pg.image.load("images/aircraft/4_vidas.png").convert_alpha()
+    life_3 =  pg.image.load("images/aircraft/3_vidas.png").convert_alpha()
+    life_2 =  pg.image.load("images/aircraft/2_vidas.png").convert_alpha()
+    life_1 =  pg.image.load("images/aircraft/1_vida.png").convert_alpha()
   
     pg.display.set_icon(icon)
 
@@ -104,6 +104,7 @@ def game():
             lifes -= 1 
             sound.play_ouch()
             imbencible = 0
+            
         if imbencible>10 and imbencible <20:
             swordfish.image = pg.image.load("images/aircraft/explosion4.png")
         if imbencible>20 and imbencible <30:
@@ -186,7 +187,7 @@ def game():
                     asteroid2.asteroid2_movement2()
                     asteroid3.asteroid3_movement2()
                     final_mision1crono = 0     
-    
+            
                         ###################################################################33
         for event in pg.event.get():
             if event.type == pg.QUIT or key[pg.K_ESCAPE]:
@@ -194,7 +195,7 @@ def game():
               # sound.switchoffplay2
                game_over = True
         key = pg.key.get_pressed()  
-        background_x -= 0.6 #############################0.6 optimo       #################    
+        background_x -= 5.6 #############################0.6 optimo       #################    
         if not key[pg.K_UP]and not key[pg.K_DOWN]:
             turbo = 0
             swordfish.vy = 4
@@ -220,9 +221,11 @@ def game():
         sprite_swordfish.draw(screen)
         asteroids_sprites.update()
         asteroids_sprites.draw(screen)
-        total_score = score+ asteroid_score + landing+ scorelife     
+        total_score = score+ asteroid_score + landing+ scorelife
+        if turbo == 500:
+                    sound.turbo()     
         if landing == 440:
-           #game_over = True
+
            sound.switchoffplay1()
            sound.switchoffplay2()
            congratulations.congratulations_screen() 

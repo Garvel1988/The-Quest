@@ -18,9 +18,14 @@ class Sounds():
      self.music_stage2 = pg.mixer.Sound("Sounds/Rush.wav")
      self.explosion = pg.mixer.Sound("Sounds\explosion.wav")
      self.music_congratulation = pg.mixer.Sound("Sounds/toogood.wav")
-     self.turbosound = pg.mixer.Sound("Sounds/turbo_rocket.wav")
+     self.turbosound = pg.mixer.Sound("Sounds/turbo_sound.wav")
      self.car24 = pg.mixer.Sound("Sounds/Car24.wav")
      self.digging = pg.mixer.Sound("Sounds/digging.wav")
+     self.radio_chart = pg.mixer.Sound("Sounds/Radio.wav.")
+
+
+   def radio(self):
+        self.radio_chart.play()
 
    def scores(self):
        self.digging.set_volume(0.1)
@@ -37,7 +42,7 @@ class Sounds():
         self.car24.set_volume(0.1)
 
    def turbo(self):
-       self.turbosound.set_volume(0.1)
+       self.turbosound.set_volume(0.9)
        self.turbosound.play()
 
    def congratulation(self):
