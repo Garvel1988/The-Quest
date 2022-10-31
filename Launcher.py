@@ -1,12 +1,8 @@
-from asyncore import read
-from cgitb import text
-from dataclasses import field
-from functools import total_ordering
 import pygame as pg
 from efects import Sounds
 from objects import Aircraft, Asteroid, Asteroid2, Asteroid3,life
 from screens import*
-from main2 import game
+from main import game
 from score import *
 
 

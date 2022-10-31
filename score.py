@@ -126,6 +126,6 @@ def updatescores():
     #createTable()
     #inser_row(text_name, score)
     #read_ordered("score")
-    read_Rows6("score")
+    #read_Rows6("score")
     #delete_row()
 
